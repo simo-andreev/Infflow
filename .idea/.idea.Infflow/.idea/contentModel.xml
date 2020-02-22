@@ -500,6 +500,7 @@
           <e p="Sound" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />
+        <e p="ColorBlenderer.cs" t="Include" />
         <e p="Constants.cs" t="Include" />
         <e p="Infflow.csproj" t="IncludeRecursive" />
         <e p="Model.cs" t="Include" />

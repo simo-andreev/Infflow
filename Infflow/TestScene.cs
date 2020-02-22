@@ -96,7 +96,18 @@ namespace Infflow
                 var tile = _drawMemory[i];
 
 
-                uint tileColor = tile.owner == null ? Color.White.ToUint() : new Color(new Color((uint) tile.owner), (byte) tile.Influence).ToUint();
+                uint tileColor;
+                if (tile.owner == null)
+                {
+                    tileColor = Color.White.ToUint();
+                }
+                else
+                {
+                    var ownerColor = new Color((uint) tile.owner);
+                    var baseTileColor = new Color(ownerColor, (byte) tile.Influence);
+                    
+                    tileColor = Color.White.Overlay(baseTileColor).ToUint();
+                }
 
                 var a = composer.GetBatch();
                 var data = a.GetData(null);
