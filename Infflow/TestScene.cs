@@ -5,6 +5,7 @@ using System.Numerics;
 using Emotion.Common;
 using Emotion.Game.QuadTree;
 using Emotion.Graphics;
+using Emotion.Graphics.Data;
 using Emotion.Graphics.Objects;
 using Emotion.Primitives;
 using Emotion.Scenography;
@@ -47,7 +48,8 @@ namespace Infflow
 
         public void Update()
         {
-            /* do noting */
+            foreach (var tile in tiles)
+                FlowTile(tile);
         }
 
         public void Draw(RenderComposer composer)
@@ -60,27 +62,6 @@ namespace Infflow
             /* do noting */
         }
 
-
-        private void GenerateTileMap()
-        {
-            for (var x = 0; x < MAP_WIDTH; x++)
-            for (var y = 0; y < MAP_HEIGHT; y++)
-            {
-                tiles[x, y] = new Model.Tile(new Vector2(x, y) * Model.Tile.TileSize);
-                switch (_random.Next(5))
-                {
-                    case 1:
-                        tiles[x, y].owner = Model.Player.Player1;
-                        break;
-                    case 2:
-                        tiles[x, y].owner = Model.Player.Player2;
-                        break;
-                }
-
-                tiles[x, y].Influence = (float) (_random.NextDouble() * 255.0f);
-            }
-        }
-
         private void RenderMap(RenderComposer composer)
         {
             _drawMemory.Clear();
@@ -91,41 +72,91 @@ namespace Infflow
 
             quadTree.GetObjects(rect, ref _drawMemory);
 
+            // ReSharper disable once ForCanBeConvertedToForeach
             for (var i = 0; i < _drawMemory.Count; i++)
             {
                 var tile = _drawMemory[i];
+                var span = composer.GetBatch().GetData(null);
+                SetTileRenderData(tile, span);
+                if (tile._hasStation)
+                    RenderBase(tile, composer);
+            }
+        }
 
+        private void RenderBase(Model.Tile tile, RenderComposer composer)
+        {
+            var circleCenter = tile.Position + new Vector3(Model.Tile.TileSize.X / 2, Model.Tile.TileSize.Y / 2, 0);
+            composer.RenderCircle(circleCenter, 10, Color.Black, true, 8);
+        }
 
-                uint tileColor;
-                if (tile.owner == null)
+        private void SetTileRenderData(Model.Tile tile, in Span<VertexData> span)
+        {
+            uint tileColor;
+            if (tile.owner == null)
+            {
+                tileColor = Color.White.ToUint();
+            }
+            else
+            {
+                var ownerColor = new Color((uint) tile.owner);
+                var baseTileColor = new Color(ownerColor, (byte) tile.Influence);
+
+                tileColor = Color.White.Overlay(baseTileColor).ToUint();
+            }
+
+            span[0].Vertex = tile.Vertex0.ToVec3();
+            span[0].Color = tileColor;
+            span[0].UV = Vector2.Zero;
+
+            span[1].Vertex = tile.Vertex1.ToVec3();
+            span[1].Color = tileColor;
+            span[1].UV = new Vector2(1, 0);
+
+            span[2].Vertex = tile.Vertex2.ToVec3();
+            span[2].Color = tileColor;
+            span[2].UV = new Vector2(1, 1);
+
+            span[3].Vertex = tile.Vertex3.ToVec3();
+            span[3].Color = tileColor;
+            span[3].UV = new Vector2(0, 1);
+        }
+        
+        
+        
+        
+        private void FlowTile(Model.Tile tile)
+        {
+            if (tile._hasStation)
+            {
+                tile.Influence += Constants.GROWTH_AMOUNT * Engine.DeltaTime;
+            }
+        }
+        
+        
+        
+
+        private void GenerateTileMap()
+        {
+            for (var x = 0; x < MAP_WIDTH; x++)
+            for (var y = 0; y < MAP_HEIGHT; y++)
+            {
+                var tile = new Model.Tile(new Vector2(x, y) * Model.Tile.TileSize);
+                switch (_random.Next(5))
                 {
-                    tileColor = Color.White.ToUint();
-                }
-                else
-                {
-                    var ownerColor = new Color((uint) tile.owner);
-                    var baseTileColor = new Color(ownerColor, (byte) tile.Influence);
-                    
-                    tileColor = Color.White.Overlay(baseTileColor).ToUint();
+                    case 1:
+                        tile.owner = Model.Player.Player1;
+                        break;
+                    case 2:
+                        tile.owner = Model.Player.Player2;
+                        break;
                 }
 
-                var a = composer.GetBatch();
-                var data = a.GetData(null);
-                data[0].Vertex = tile.Vertex0.ToVec3();
-                data[0].Color = tileColor;
-                data[0].UV = Vector2.Zero;
+                if (tile.owner != null && _random.Next(100) > 50)
+                    tile._hasStation = true;
 
-                data[1].Vertex = tile.Vertex1.ToVec3();
-                data[1].Color = tileColor;
-                data[1].UV = new Vector2(1, 0);
+                tile.Influence = (float) (_random.NextDouble() * 255.0f);
 
-                data[2].Vertex = tile.Vertex2.ToVec3();
-                data[2].Color = tileColor;
-                data[2].UV = new Vector2(1, 1);
-
-                data[3].Vertex = tile.Vertex3.ToVec3();
-                data[3].Color = tileColor;
-                data[3].UV = new Vector2(0, 1);
+                tiles[x, y] = tile;
             }
         }
     }

@@ -26,13 +26,14 @@ namespace Infflow
                 {
                     if (value <= Constants.EVAPORATION_LEVEL)
                     {
-                        value = 0;
+                        _influence = 0;
                         owner = null;
+                        return;
                     }
-                    else
-                    {
-                        _influence = value;
-                    }
+
+                    if (value > 255) value = 255;
+
+                    _influence = value;
                 }
             }
 
