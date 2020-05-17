@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Numerics;
 using Emotion.Primitives;
 
@@ -17,39 +18,31 @@ namespace Infflow
             public Vector2 Vertex2;
             public Vector2 Vertex3;
 
-            private float _influence;
-
-            public float Influence
+            public Dictionary<Player, float> Influence = new Dictionary<Player, float>(2)
             {
-                get => _influence;
-                set
-                {
-                    if (value <= Constants.EVAPORATION_LEVEL)
-                    {
-                        _influence = 0;
-                        owner = null;
-                        return;
-                    }
+                {Player.Player1, 0f},
+                {Player.Player2, 0f}
+            };
 
-                    if (value > 255) value = 255;
-
-                    _influence = value;
-                }
-            }
-
-            public Player? owner;
-
-            public Tile(Vector2 position, Player? owner = null, float influence = 0f)
+            public Tile(Vector2 position, Player? owner = null)
             {
                 Vertex0 = new Vector2(position.X, position.Y);
                 Vertex1 = new Vector2(position.X + TileSize.X, position.Y);
                 Vertex2 = new Vector2(position.X + TileSize.X, position.Y + TileSize.Y);
                 Vertex3 = new Vector2(position.X, position.Y + TileSize.Y);
 
-                this.owner = owner;
-                this.Influence = influence;
-
                 Bounds = Rectangle.BoundsFromPolygonPoints(new[] {Vertex0, Vertex1, Vertex2, Vertex3});
+            }
+
+            public Player? GetOwner()
+            {
+                Player? owner = null;
+                float highest = 0;
+                foreach (var (player, influence) in Influence)
+                    if (highest < influence)
+                        owner = player;
+
+                return owner;
             }
         }
 

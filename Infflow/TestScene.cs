@@ -54,8 +54,7 @@ namespace Infflow
 
         public void Update()
         {
-            foreach (var tile in tiles)
-                FlowTile(tile);
+
         }
 
         public void Draw(RenderComposer composer)
@@ -93,14 +92,15 @@ namespace Infflow
         private void SetTileRenderData(Model.Tile tile, in Span<VertexData> span)
         {
             uint tileColor;
-            if (tile.owner == null)
+            var owner = tile.GetOwner();
+            if (owner == null)
             {
                 tileColor = Color.White.ToUint();
             }
             else
             {
-                var ownerColor = new Color((uint) tile.owner);
-                var baseTileColor = new Color(ownerColor, (byte) tile.Influence);
+                var ownerColor = new Color((uint) owner);
+                var baseTileColor = new Color(ownerColor, (byte) tile.Influence[(Model.Player) owner]);
 
                 tileColor = Color.White.Overlay(baseTileColor).ToUint();
             }
@@ -123,35 +123,26 @@ namespace Infflow
         }
 
 
-        private void FlowTile(Model.Tile tile)
-        {
-            if (tile._hasStation)
-            {
-                tile.Influence += Constants.GROWTH_AMOUNT * Engine.DeltaTime;
-            }
-        }
-
-
         private void GenerateTileMap()
         {
             for (var x = 0; x < MAP_WIDTH; x++)
             for (var y = 0; y < MAP_HEIGHT; y++)
             {
                 var tile = new Model.Tile(new Vector2(x, y) * Model.Tile.TileSize);
-                switch (_random.Next(5))
+                switch (_random.Next(20))
                 {
                     case 1:
-                        tile.owner = Model.Player.Player1;
+                        if (_random.Next(100) > 50)
+                            tile._hasStation = true;
+                        tile.Influence[Model.Player.Player1] = 100f;
                         break;
+
                     case 2:
-                        tile.owner = Model.Player.Player2;
+                        tile.Influence[Model.Player.Player2] = 100f;
+                        if (_random.Next(100) > 50)
+                            tile._hasStation = true;
                         break;
                 }
-
-                if (tile.owner != null && _random.Next(100) > 50)
-                    tile._hasStation = true;
-
-                tile.Influence = (float) (_random.NextDouble() * 255.0f);
 
                 tiles[x, y] = tile;
             }
