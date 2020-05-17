@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\simeo\.Rider2019.3\config\scratches" t="IncludeRecursive" />
-    <e p="C:\Users\simeo\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\simeo\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Infflow.647280942.00" t="ExcludeRecursive" />
-    <e p="D:\RiderProjects\Emotion\Emotion" t="IncludeRecursive">
+    <e p="C:\Users\simeo\AppData\local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\simeo\AppData\local\JetBrains\Rider2020.1\resharper-host\local\Transient\ReSharperHost\v201\SolutionCaches\_Infflow.-1697386099.00" t="ExcludeRecursive" />
+    <e p="E:\RiderProjects\Emotion\Emotion" t="IncludeRecursive">
       <e p="Assets" t="Include">
         <e p="Shaders" t="Include">
           <e p="Blur.frag" t="Include" />
@@ -20,7 +19,12 @@
       </e>
       <e p="Audio" t="Include">
         <e p="AudioLayer.cs" t="Include" />
+        <e p="AudioModulationEffect.cs" t="Include" />
         <e p="AudioTrack.cs" t="Include" />
+        <e p="Fading" t="Include">
+          <e p="AudioFadeIn.cs" t="Include" />
+          <e p="AudioFadeOut.cs" t="Include" />
+        </e>
         <e p="PlaybackStatus.cs" t="Include" />
       </e>
       <e p="bin" t="ExcludeRecursive" />
@@ -28,6 +32,7 @@
         <e p="Configurator.cs" t="Include" />
         <e p="Engine.cs" t="Include" />
         <e p="EngineStatus.cs" t="Include" />
+        <e p="PerfProfiler.cs" t="Include" />
         <e p="Plugin.cs" t="Include" />
         <e p="Threading" t="Include">
           <e p="EmAction.cs" t="Include" />
@@ -41,10 +46,9 @@
       <e p="Game" t="Include">
         <e p="Animation" t="Include">
           <e p="AnimatedTexture.cs" t="Include" />
-          <e p="AnimatedTextureDescription.cs" t="Include" />
           <e p="AnimationController.cs" t="Include" />
-          <e p="AnimationControllerDescription.cs" t="Include" />
           <e p="AnimationLoopType.cs" t="Include" />
+          <e p="AnimationNode.cs" t="Include" />
         </e>
         <e p="AStar" t="Include">
           <e p="AStarGrid.cs" t="Include" />
@@ -81,8 +85,10 @@
           <e p="Every.cs" t="Include" />
           <e p="ITimer.cs" t="Include" />
           <e p="Routines" t="Include">
+            <e p="CombineWait.cs" t="Include" />
             <e p="Coroutine.cs" t="Include" />
             <e p="CoroutineManager.cs" t="Include" />
+            <e p="ProxyWaiter.cs" t="Include" />
             <e p="RoutineDelay.cs" t="Include" />
             <e p="TaskRoutineWaiter.cs" t="Include" />
             <e p="WaitForSeconds.cs" t="Include" />
@@ -98,6 +104,8 @@
       </e>
       <e p="Graphics" t="Include">
         <e p="Batches" t="Include">
+          <e p="FencedBufferObjects.cs" t="Include" />
+          <e p="FencedBufferSource.cs" t="Include" />
           <e p="SharedMemorySpriteBatch.cs" t="Include" />
           <e p="SortedSpriteBatch.cs" t="Include" />
           <e p="SpriteBatch.cs" t="Include" />
@@ -117,6 +125,7 @@
         <e p="Objects" t="Include">
           <e p="DataBuffer.cs" t="Include" />
           <e p="FrameBuffer.cs" t="Include" />
+          <e p="FrameBufferTexture.cs" t="Include" />
           <e p="IndexBuffer.cs" t="Include" />
           <e p="Texture.cs" t="Include" />
           <e p="VertexArrayObject.cs" t="Include" />
@@ -219,7 +228,6 @@
                 <e p="Types.cs" t="Include" />
               </e>
               <e p="NtDll.cs" t="Include" />
-              <e p="ReadMe.md" t="Include" />
               <e p="ShCore" t="Include">
                 <e p="Methods.cs" t="Include" />
                 <e p="Types.cs" t="Include" />
@@ -299,7 +307,10 @@
             <e p="RequiredByFeatureAttribute.cs" t="Include" />
           </e>
           <e p="LimitAttribute.cs" t="Include" />
-          <e p="ReadMe.md" t="Include" />
+          <e p="Meta" t="Include">
+            <e p="GLContextDescription.cs" t="Include" />
+            <e p="GLProfile.cs" t="Include" />
+          </e>
         </e>
         <e p="PlatformBase.cs" t="Include" />
         <e p="Window.cs" t="Include" />
@@ -311,6 +322,8 @@
         <e p="IRecyclable.cs" t="Include" />
         <e p="IRenderable.cs" t="Include" />
         <e p="ITransformRenderable.cs" t="Include" />
+        <e p="LineSegment.cs" t="Include" />
+        <e p="Polygon.cs" t="Include" />
         <e p="Positional.cs" t="Include" />
         <e p="Ray2D.cs" t="Include" />
         <e p="Rectangle.cs" t="Include" />
@@ -333,7 +346,6 @@
           <e p="AudioFormat.cs" t="Include" />
           <e p="AudioStreamer.cs" t="Include" />
           <e p="AudioUtil.cs" t="Include" />
-          <e p="ReadMe.md" t="Include" />
           <e p="WAV" t="Include">
             <e p="WavFormat.cs" t="Include" />
           </e>
@@ -351,13 +363,7 @@
             <e p="PngColorTypeInformation.cs" t="Include" />
             <e p="PngFileHeader.cs" t="Include" />
             <e p="PngFormat.cs" t="Include" />
-            <e p="Readers" t="Include">
-              <e p="GreyscaleReader.cs" t="Include" />
-              <e p="PalleteIndexReader.cs" t="Include" />
-              <e p="TrueColorReader.cs" t="Include" />
-            </e>
           </e>
-          <e p="ReadMe.md" t="Include" />
         </e>
         <e p="Logging" t="Include">
           <e p="DefaultLogger.cs" t="Include" />
@@ -369,23 +375,23 @@
           <e p="PreSetupLogger.cs" t="Include" />
           <e p="StringWriterExt.cs" t="Include" />
         </e>
-        <e p="Text" t="Include">
+        <e p="OpenType" t="Include">
           <e p="Font.cs" t="Include" />
           <e p="FontAtlas.cs" t="Include" />
           <e p="FontTable.cs" t="Include" />
           <e p="FontTables" t="Include">
-            <e p="Cff.cs" t="Include" />
-            <e p="CMap.cs" t="Include" />
-            <e p="Glyf.cs" t="Include" />
-            <e p="Gsub.cs" t="Include" />
-            <e p="Head.cs" t="Include" />
-            <e p="Hhea.cs" t="Include" />
-            <e p="Hmtx.cs" t="Include" />
-            <e p="Loca.cs" t="Include" />
-            <e p="Maxp.cs" t="Include" />
-            <e p="Name.cs" t="Include" />
-            <e p="OS2.cs" t="Include" />
-            <e p="Post.cs" t="Include" />
+            <e p="CffTable.cs" t="Include" />
+            <e p="CMapTable.cs" t="Include" />
+            <e p="GlyfTable.cs" t="Include" />
+            <e p="GsubTable.cs" t="Include" />
+            <e p="HeadTable.cs" t="Include" />
+            <e p="HheaTable.cs" t="Include" />
+            <e p="HmtxTable.cs" t="Include" />
+            <e p="LocaTable.cs" t="Include" />
+            <e p="MaxpTable.cs" t="Include" />
+            <e p="NameTable.cs" t="Include" />
+            <e p="OS2Table.cs" t="Include" />
+            <e p="PostTable.cs" t="Include" />
           </e>
           <e p="Freetype" t="Include">
             <e p="Emotion.Standard.FreeType.dll" t="Include" />
@@ -396,16 +402,35 @@
           <e p="Glyph.cs" t="Include" />
           <e p="GlyphRenderer.cs" t="Include" />
           <e p="GlyphVertex.cs" t="Include" />
-          <e p="ReadMe.md" t="Include" />
-          <e p="StbTrueType" t="Include">
-            <e p="CharacterRange.cs" t="Include" />
-            <e p="CRuntime.cs" t="Include" />
-            <e p="FontBaker.cs" t="Include" />
-            <e p="FontBakerResult.cs" t="Include" />
-            <e p="GlyphInfo.cs" t="Include" />
-            <e p="StbTrueType.cs" t="Include" />
-            <e p="StbTrueType.Generated.cs" t="Include" />
+        </e>
+        <e p="TMX" t="Include">
+          <e p="Enum" t="Include">
+            <e p="Orientation.cs" t="Include" />
+            <e p="RenderOrder.cs" t="Include" />
+            <e p="StaggerAxis.cs" t="Include" />
+            <e p="StaggerIndex.cs" t="Include" />
           </e>
+          <e p="Layer" t="Include">
+            <e p="TmxGroupedLayers.cs" t="Include" />
+            <e p="TmxImageLayer.cs" t="Include" />
+            <e p="TmxLayer.cs" t="Include" />
+            <e p="TmxLayerTile.cs" t="Include" />
+            <e p="TmxObjectLayer.cs" t="Include" />
+          </e>
+          <e p="Object" t="Include">
+            <e p="DrawOrder.cs" t="Include" />
+            <e p="TmxAlignment.cs" t="Include" />
+            <e p="TmxObject.cs" t="Include" />
+            <e p="TmxObjectType.cs" t="Include" />
+            <e p="TmxText.cs" t="Include" />
+          </e>
+          <e p="TiledCore.cs" t="Include" />
+          <e p="TmxAnimatedFrame.cs" t="Include" />
+          <e p="TmxHelpers.cs" t="Include" />
+          <e p="TmxMap.cs" t="Include" />
+          <e p="TmxTerrain.cs" t="Include" />
+          <e p="TmxTileset.cs" t="Include" />
+          <e p="TmxTilesetTile.cs" t="Include" />
         </e>
         <e p="Utility" t="Include">
           <e p="ByteReader.cs" t="Include" />
@@ -415,17 +440,41 @@
             <e p="ZlibStreamUtility.cs" t="Include" />
           </e>
         </e>
+        <e p="XML" t="Include">
+          <e p="DontSerializeAttribute.cs" t="Include" />
+          <e p="TypeHandlers" t="Include">
+            <e p="XMLArrayTypeHandler.cs" t="Include" />
+            <e p="XMLComplexBaseTypeHandler.cs" t="Include" />
+            <e p="XMLComplexTypeHandler.cs" t="Include" />
+            <e p="XMLComplexValueTypeHandler.cs" t="Include" />
+            <e p="XMLDictionaryTypeHandler.cs" t="Include" />
+            <e p="XMLEnumTypeHandler.cs" t="Include" />
+            <e p="XMLKeyValueTypeHandler.cs" t="Include" />
+            <e p="XMLListHandler.cs" t="Include" />
+            <e p="XMLPrimitiveTypeHandler.cs" t="Include" />
+            <e p="XMLStringTypeHandler.cs" t="Include" />
+            <e p="XMLTypeHandler.cs" t="Include" />
+          </e>
+          <e p="XMLFieldHandler.cs" t="Include" />
+          <e p="XMLFormat.cs" t="Include" />
+          <e p="XMLHelpers.cs" t="Include" />
+          <e p="XMLReader.cs" t="Include" />
+          <e p="XMLReader.ExtendedAPI.cs" t="Include" />
+          <e p="XMLRecursionChecker.cs" t="Include" />
+          <e p="XMLReflectionHandler.cs" t="Include" />
+        </e>
       </e>
       <e p="Utility" t="Include">
         <e p="EmotionEvent.cs" t="Include" />
         <e p="Extensions.cs" t="Include" />
         <e p="Helpers.cs" t="Include" />
         <e p="ImageUtil.cs" t="Include" />
+        <e p="LazyConcurrentDictionary.cs" t="Include" />
         <e p="Maths.cs" t="Include" />
         <e p="NativeHelpers.cs" t="Include" />
       </e>
     </e>
-    <e p="D:\RiderProjects\Emotion\Emotion.Plugins.ImGuiNet" t="IncludeRecursive">
+    <e p="E:\RiderProjects\Emotion\Emotion.Plugins.ImGuiNet" t="IncludeRecursive">
       <e p="bin" t="ExcludeRecursive" />
       <e p="Cimgui" t="Include">
         <e p="cimgui.dll" t="Include" />
@@ -449,7 +498,7 @@
         <e p="WindowManager.cs" t="Include" />
       </e>
     </e>
-    <e p="D:\RiderProjects\Emotion\Emotion.Tools" t="IncludeRecursive">
+    <e p="E:\RiderProjects\Emotion\Emotion.Tools" t="IncludeRecursive">
       <e p="Assets" t="Include">
         <e p="debugFont.otf" t="Include" />
       </e>
@@ -482,21 +531,25 @@
         </e>
         <e p="Audio" t="Include">
           <e p="AudioMixer.cs" t="Include" />
+          <e p="AudioTrackModifyModal.cs" t="Include" />
+          <e p="WaveformCache.cs" t="Include" />
         </e>
-        <e p="AudioEditor.cs" t="Include" />
         <e p="HelpWindows" t="Include">
           <e p="FileExplorer.cs" t="Include" />
           <e p="StringInputModal.cs" t="Include" />
         </e>
-        <e p="MapEditor.cs" t="Include" />
+        <e p="MapViewer.cs" t="Include" />
         <e p="PerformanceMonitor.cs" t="Include" />
+        <e p="PNGExporter.cs" t="Include" />
         <e p="ToolsMenu.cs" t="Include" />
       </e>
     </e>
-    <e p="D:\RiderProjects\Infflow" t="IncludeFlat">
+    <e p="E:\RiderProjects\Infflow" t="IncludeFlat">
       <e p="Infflow" t="IncludeRecursive">
         <e p="Assets" t="Include">
-          <e p="Image" t="Include" />
+          <e p="Image" t="Include">
+            <e p="tower.png" t="Include" />
+          </e>
           <e p="Sound" t="Include" />
         </e>
         <e p="bin" t="ExcludeRecursive" />

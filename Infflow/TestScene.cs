@@ -7,8 +7,10 @@ using Emotion.Game.QuadTree;
 using Emotion.Graphics;
 using Emotion.Graphics.Data;
 using Emotion.Graphics.Objects;
+using Emotion.IO;
 using Emotion.Primitives;
 using Emotion.Scenography;
+using Emotion.Tools.Windows;
 using Emotion.Utility;
 
 namespace Infflow
@@ -30,10 +32,14 @@ namespace Infflow
         private byte _lastMouseY = 0;
         private Model.Tile _lastMouseOver = null;
 
+        private Vector2 towerSize = Model.Tile.TileSize;
+        private TextureAsset towerTextureAsset;
+
         public void Load()
         {
-            GenerateTileMap();
+            towerTextureAsset = Engine.AssetLoader.Get<TextureAsset>("image/tower.png");
 
+            GenerateTileMap();
             Rectangle boundsOfMap = Rectangle.BoundsFromPolygonPoints(new[]
             {
                 tiles[0, 0].Vertex0,
@@ -55,11 +61,12 @@ namespace Infflow
         public void Draw(RenderComposer composer)
         {
             RenderMap(composer);
+            composer.RenderToolsMenu();
         }
 
         public void Unload()
         {
-            /* do noting */
+            Engine.AssetLoader.Destroy(towerTextureAsset.Name);
         }
 
         private void RenderMap(RenderComposer composer)
@@ -79,14 +86,8 @@ namespace Infflow
                 var span = composer.GetBatch().GetData(null);
                 SetTileRenderData(tile, span);
                 if (tile._hasStation)
-                    RenderBase(tile, composer);
+                    composer.RenderSprite(tile.Position, towerSize, towerTextureAsset.Texture); // render tower
             }
-        }
-
-        private void RenderBase(Model.Tile tile, RenderComposer composer)
-        {
-            var circleCenter = tile.Position + new Vector3(Model.Tile.TileSize.X / 2, Model.Tile.TileSize.Y / 2, 0);
-            composer.RenderCircle(circleCenter, 10, Color.Black, true, 8);
         }
 
         private void SetTileRenderData(Model.Tile tile, in Span<VertexData> span)
@@ -120,10 +121,8 @@ namespace Infflow
             span[3].Color = tileColor;
             span[3].UV = new Vector2(0, 1);
         }
-        
-        
-        
-        
+
+
         private void FlowTile(Model.Tile tile)
         {
             if (tile._hasStation)
@@ -131,9 +130,7 @@ namespace Infflow
                 tile.Influence += Constants.GROWTH_AMOUNT * Engine.DeltaTime;
             }
         }
-        
-        
-        
+
 
         private void GenerateTileMap()
         {
